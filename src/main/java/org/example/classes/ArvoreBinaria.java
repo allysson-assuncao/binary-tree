@@ -18,7 +18,7 @@ public class ArvoreBinaria {
     }
 
     public void inserir(int valor) {
-        nodo = inserirRecursivo(nodo, valor);
+        nodo = inserirRecursivo(this.nodo, valor);
     }
 
     private No inserirRecursivo(ArvoreBinaria.No arvore, int valor) {
