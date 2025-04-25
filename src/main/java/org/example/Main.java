@@ -16,6 +16,8 @@ public class Main {
 
         arvore.inorder();
 
+        System.out.printf("https://code-with-me.global.jetbrains.com/wxekjjIIqbiM3JD4cn4vGQ#p=IU&fp=5B9D75BEA9DF32A2968246E439EBDCDB89C1AC74B3D876BF77E41629BA9096C8&newUi=true");
+
         /*BinarySearchTree bst = new BinarySearchTree();
 
         bst.insert(50);
