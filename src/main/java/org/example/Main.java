@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.classes.ArvoreBinaria;
-import org.example.classes.BinarySearchTree;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,15 +8,20 @@ public class Main {
         ArvoreBinaria arvore = new ArvoreBinaria();
 
         arvore.inserir(15);
-
-        arvore.inorder();
-
         arvore.inserir(8);
+        arvore.inserir(2);
+        arvore.inserir(12);
+        arvore.inserir(10);
+        System.out.println();
 
         arvore.inorder();
+        arvore.inserir(23);
+        arvore.inserir(20);
+        arvore.inserir(30);
 
-        System.out.printf("https://code-with-me.global.jetbrains.com/wxekjjIIqbiM3JD4cn4vGQ#p=IU&fp=5B9D75BEA9DF32A2968246E439EBDCDB89C1AC74B3D876BF77E41629BA9096C8&newUi=true");
+        System.out.println();
 
+        arvore.inorder();
         /*BinarySearchTree bst = new BinarySearchTree();
 
         bst.insert(50);

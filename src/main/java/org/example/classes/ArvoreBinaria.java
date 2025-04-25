@@ -13,6 +13,8 @@ public class ArvoreBinaria {
 
     public No nodo;
 
+    private static int cont = 0;
+
     public ArvoreBinaria() {
         this.nodo = null;
     }
@@ -38,13 +40,16 @@ public class ArvoreBinaria {
 
     public void inorder() {
         inorderRec(nodo);
+        System.out.println("Cont: " + cont);
+        cont = 0;
     }
 
-    private void inorderRec(ArvoreBinaria.No root) {
-        if (root != null) {
-            inorderRec(root.esquerda);
-            System.out.print(root.valor + " ");
-            inorderRec(root.direita);
+    private void inorderRec(ArvoreBinaria.No nodo) {
+        if(nodo != null) {
+            inorderRec(nodo.esquerda);
+            cont++;
+            System.out.printf(nodo.valor + " ");
+            inorderRec(nodo.direita);
         }
     }
 
