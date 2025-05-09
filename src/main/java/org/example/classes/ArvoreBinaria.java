@@ -52,5 +52,4 @@ public class ArvoreBinaria {
             inorderRec(nodo.direita);
         }
     }
-
 }
