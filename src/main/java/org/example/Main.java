@@ -6,20 +6,22 @@ public class Main {
     public static void main(String[] args) {
 
         ArvoreBinaria arvore = new ArvoreBinaria();
-
-        System.out.println("https://code-with-me.global.jetbrains.com/WKQ4W4UFxXqur2ye6jrBiQ#p=IU&fp=EA5D4B03949D4568B1E04D0675A60D1A8B7EB4DEDE3F8A3340021A3AA95E41A8&newUi=true");
-
-        arvore.inserir(15);
+        arvore.inserir(8);
         arvore.inserir(8);
         arvore.inserir(2);
-        arvore.inserir(12);
         arvore.inserir(10);
-        System.out.println();
+        arvore.inserir(1);
+        arvore.inserir(14);
+        arvore.inserir(6);
+        arvore.inserir(4);
+        arvore.inserir(7);
+        arvore.inserir(13);
+        arvore.inserir(3);
 
         arvore.inorder();
-        arvore.inserir(23);
-        arvore.inserir(20);
-        arvore.inserir(30);
+        System.out.println();
+
+        arvore.remover(6);
 
         System.out.println();
 

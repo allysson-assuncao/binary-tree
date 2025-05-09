@@ -38,6 +38,37 @@ public class ArvoreBinaria {
         return arvore;
     }
 
+    public void remover(int valor) {
+        nodo = removerRec(this.nodo, valor);
+    }
+
+    private No removerRec(No arvore, int valor) {
+        if (arvore == null) return arvore;
+
+        if (valor < arvore.valor) {
+            arvore.esquerda = removerRec(arvore.esquerda, valor);
+        } else if (valor > arvore.valor) {
+            arvore.direita = removerRec(arvore.direita, valor);
+        } else {
+            if (arvore.direita == null) return arvore.esquerda;
+            else if (arvore.esquerda == null) return arvore.direita;
+
+            arvore.valor = valorMaximo(arvore.esquerda);
+            arvore.esquerda = removerRec(arvore.esquerda, arvore.valor);
+        }
+
+        return arvore;
+    }
+
+    private int valorMaximo(No arvore) {
+        int valorM = arvore.valor;
+        while(arvore.direita != null) {
+            valorM = arvore.direita.valor;
+            arvore = arvore.direita;
+        }
+        return valorM;
+    }
+
     public void inorder() {
         inorderRec(nodo);
         System.out.println("Cont: " + cont);
