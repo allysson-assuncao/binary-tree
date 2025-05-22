@@ -9,7 +9,6 @@ public class Main {
 
         ArvoreBinaria arvore = new ArvoreBinaria();
         arvore.inserir(8);
-        arvore.inserir(8);
         arvore.inserir(2);
         arvore.inserir(10);
         arvore.inserir(1);
@@ -20,14 +19,18 @@ public class Main {
         arvore.inserir(13);
         arvore.inserir(3);
 
-        arvore.inorder();
-        System.out.println();
+        /*arvore.inorder();
+        System.out.println();*/
 
         arvore.remover(6);
 
         System.out.println();
-
         arvore.inorder();
+        System.out.println();
+        arvore.preorder();
+        System.out.println();
+        arvore.postorder();
+        System.out.println();
         /*BinarySearchTree bst = new BinarySearchTree();
 
         bst.insert(50);

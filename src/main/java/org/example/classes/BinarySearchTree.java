@@ -71,6 +71,7 @@ public class BinarySearchTree {
     }
 
     // Inorder traversal
+    // Inorder traversal
     public void inorder() {
         inorderRec(root);
     }
@@ -80,6 +81,32 @@ public class BinarySearchTree {
             inorderRec(root.left);
             System.out.print(root.key + " ");
             inorderRec(root.right);
+        }
+    }
+
+    // PreOrder traversal
+    public void preOrder() {
+        preOrderRec(root);
+    }
+
+    private void preOrderRec(Node root) {
+        if (root != null) {
+            System.out.print(root.key + " ");
+            preOrderRec(root.left);
+            preOrderRec(root.right);
+        }
+    }
+
+    // PostOrder traversal
+    public void postOrder() {
+        postOrderRec(root);
+    }
+
+    private void postOrderRec(Node root) {
+        if (root != null) {
+            postOrderRec(root.left);
+            postOrderRec(root.right);
+            System.out.print(root.key + " ");
         }
     }
 }

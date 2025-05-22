@@ -83,4 +83,34 @@ public class ArvoreBinaria {
             inorderRec(nodo.direita);
         }
     }
+
+    public void preorder() {
+        preorderRec(nodo);
+        System.out.println("Cont: " + cont);
+        cont = 0;
+    }
+
+    private void preorderRec(ArvoreBinaria.No nodo) {
+        if(nodo != null) {
+            cont++;
+            System.out.printf(nodo.valor + " ");
+            inorderRec(nodo.esquerda);
+            inorderRec(nodo.direita);
+        }
+    }
+
+    public void postorder() {
+        postorderRec(nodo);
+        System.out.println("Cont: " + cont);
+        cont = 0;
+    }
+
+    private void postorderRec(ArvoreBinaria.No nodo) {
+        if(nodo != null) {
+            inorderRec(nodo.esquerda);
+            inorderRec(nodo.direita);
+            cont++;
+            System.out.printf(nodo.valor + " ");
+        }
+    }
 }
