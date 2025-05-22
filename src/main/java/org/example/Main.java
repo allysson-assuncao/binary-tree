@@ -8,21 +8,15 @@ public class Main {
         System.out.println("https://code-with-me.global.jetbrains.com/QAE6eoDa2fZ48axb43ns8w#p=IU&fp=4191570DA49B864F41BADA7D415A908D972947C1AF764F2717E8D971B1537C23&newUi=true");
 
         ArvoreBinaria arvore = new ArvoreBinaria();
-        arvore.inserir(8);
-        arvore.inserir(2);
-        arvore.inserir(10);
-        arvore.inserir(1);
-        arvore.inserir(14);
-        arvore.inserir(6);
-        arvore.inserir(4);
-        arvore.inserir(7);
-        arvore.inserir(13);
-        arvore.inserir(3);
+        arvore.inserir(40);
+        arvore.inserir(30);
+        arvore.inserir(60);
+        arvore.inserir(50);
 
         /*arvore.inorder();
         System.out.println();*/
 
-        arvore.remover(6);
+        /*arvore.remover(6);*/
 
         System.out.println();
         arvore.inorder();

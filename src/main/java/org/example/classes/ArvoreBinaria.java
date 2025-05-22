@@ -94,8 +94,8 @@ public class ArvoreBinaria {
         if(nodo != null) {
             cont++;
             System.out.printf(nodo.valor + " ");
-            inorderRec(nodo.esquerda);
-            inorderRec(nodo.direita);
+            preorderRec(nodo.esquerda);
+            preorderRec(nodo.direita);
         }
     }
 
@@ -107,8 +107,8 @@ public class ArvoreBinaria {
 
     private void postorderRec(ArvoreBinaria.No nodo) {
         if(nodo != null) {
-            inorderRec(nodo.esquerda);
-            inorderRec(nodo.direita);
+            postorderRec(nodo.esquerda);
+            postorderRec(nodo.direita);
             cont++;
             System.out.printf(nodo.valor + " ");
         }
