@@ -5,10 +5,12 @@ public class BinarySearchTree {
     private static class Node {
         int key;
         Node left, right;
+        int height;
 
         public Node(int item) {
             key = item;
             left = right = null;
+            height = 1;
         }
     }
 
@@ -18,190 +20,130 @@ public class BinarySearchTree {
         root = null;
     }
 
-    // Insert a new key
+    // Insert a new key with balancing
     public void insert(int key) {
         root = insertRec(root, key);
     }
 
-    private Node insertRec(Node root, int key) {
-        if (root == null) {
-            root = new Node(key);
-            return root;
+    private Node insertRec(Node node, int key) {
+        if (node == null) {
+            return new Node(key);
         }
 
-        if (key < root.key) {
-            root.left = insertRec(root.left, key);
-        } else if (key > root.key) {
-            root.right = insertRec(root.right, key);
-        }
-
-        return root;
-    }
-
-    // Delete a key
-    public void deleteKey(int key) {
-        root = deleteRec(root, key);
-    }
-
-    private Node deleteRec(Node root, int key) {
-        if (root == null) return root;
-
-        if (key < root.key) {
-            root.left = deleteRec(root.left, key);
-        } else if (key > root.key) {
-            root.right = deleteRec(root.right, key);
+        if (key < node.key) {
+            node.left = insertRec(node.left, key);
+        } else if (key > node.key) {
+            node.right = insertRec(node.right, key);
         } else {
-            if (root.left == null) return root.right;
-            else if (root.right == null) return root.left;
-
-            root.key = minValue(root.right);
-            root.right = deleteRec(root.right, root.key);
+            // Duplicates not allowed
+            return node;
         }
 
-        return root;
-    }
+        // Atualiza altura do nó atual
+        node.height = 1 + Math.max(height(node.left), height(node.right));
 
-    private int minValue(Node root) {
-        int minv = root.key;
-        while (root.left != null) {
-            minv = root.left.key;
-            root = root.left;
+        // Calcula fator de balanceamento
+        int balance = getBalance(node);
+
+        // LL Case
+        if (balance > 1 && key < node.left.key) {
+            return rightRotate(node);
         }
-        return minv;
-    }
 
-    // Inorder traversal
-    // Inorder traversal
-    public void inorder() {
-        inorderRec(root);
-    }
-
-    private void inorderRec(Node root) {
-        if (root != null) {
-            inorderRec(root.left);
-            System.out.print(root.key + " ");
-            inorderRec(root.right);
+        // LR Case
+        if (balance > 1 && key > node.left.key) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
         }
+
+        // RR e RL não implementados pois só pediu LL e LR
+
+        return node;
     }
 
-    // PreOrder traversal
-    public void preOrder() {
-        preOrderRec(root);
-    }
-
-    private void preOrderRec(Node root) {
-        if (root != null) {
-            System.out.print(root.key + " ");
-            preOrderRec(root.left);
-            preOrderRec(root.right);
-        }
-    }
-
-    // PostOrder traversal
-    public void postOrder() {
-        postOrderRec(root);
-    }
-
-    private void postOrderRec(Node root) {
-        if (root != null) {
-            postOrderRec(root.left);
-            postOrderRec(root.right);
-            System.out.print(root.key + " ");
-        }
-    }
-    
-    // Height of a node
+    // Calcula altura de um nó
     private int height(Node node) {
         if (node == null) return 0;
-        return 1 + Math.max(height(node.left), height(node.right));
+        return node.height;
     }
 
-    // Balance factor
+    // Fator de balanceamento
     private int getBalance(Node node) {
         if (node == null) return 0;
         return height(node.left) - height(node.right);
     }
 
-    // Right rotation (LL case)
-    private Node rotateRight(Node y) {
+    // Rotação simples à direita (LL)
+    private Node rightRotate(Node y) {
         Node x = y.left;
         Node T2 = x.right;
 
-        // Perform rotation
+        // Rotação
         x.right = y;
         y.left = T2;
 
+        // Atualiza alturas
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+        // Retorna nova raiz
         return x;
     }
 
-    // Left rotation (RR case, not used for LL/LR but useful for completeness)
-    private Node rotateLeft(Node x) {
+    // Rotação simples à esquerda (usada na LR)
+    private Node leftRotate(Node x) {
         Node y = x.right;
         Node T2 = y.left;
 
-        // Perform rotation
+        // Rotação
         y.left = x;
         x.right = T2;
 
+        // Atualiza alturas
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+        // Retorna nova raiz
         return y;
     }
 
-    // Rebalance node if needed (LL and LR cases)
-    private Node rebalance(Node node) {
-        int balance = getBalance(node);
-
-        // LL Case
-        if (balance > 1 && getBalance(node.left) >= 0) {
-            return rotateRight(node);
-        }
-
-        // LR Case
-        if (balance > 1 && getBalance(node.left) < 0) {
-            node.left = rotateLeft(node.left);
-            return rotateRight(node);
-        }
-
-        // RR and RL cases could be added similarly if needed
-
-        return node;
-    }
-
-    // Inorder traversal
+    // Métodos de travessia (iguais ao original)
     public void inorder() {
         inorderRec(root);
+        System.out.println();
     }
 
-    private void inorderRec(Node root) {
-        if (root != null) {
-            inorderRec(root.left);
-            System.out.print(root.key + " ");
-            inorderRec(root.right);
+    private void inorderRec(Node node) {
+        if (node != null) {
+            inorderRec(node.left);
+            System.out.print(node.key + " ");
+            inorderRec(node.right);
         }
     }
 
-    // PreOrder traversal
     public void preOrder() {
         preOrderRec(root);
+        System.out.println();
     }
 
-    private void preOrderRec(Node root) {
-        if (root != null) {
-            System.out.print(root.key + " ");
-            preOrderRec(root.left);
-            preOrderRec(root.right);
+    private void preOrderRec(Node node) {
+        if (node != null) {
+            System.out.print(node.key + " ");
+            preOrderRec(node.left);
+            preOrderRec(node.right);
         }
     }
 
-    // PostOrder traversal
     public void postOrder() {
         postOrderRec(root);
+        System.out.println();
     }
 
-    private void postOrderRec(Node root) {
-        if (root != null) {
-            postOrderRec(root.left);
-            postOrderRec(root.right);
-            System.out.print(root.key + " ");
+    private void postOrderRec(Node node) {
+        if (node != null) {
+            postOrderRec(node.left);
+            postOrderRec(node.right);
+            System.out.print(node.key + " ");
         }
     }
 }
