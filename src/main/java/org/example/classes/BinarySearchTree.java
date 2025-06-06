@@ -109,4 +109,99 @@ public class BinarySearchTree {
             System.out.print(root.key + " ");
         }
     }
+    
+    // Height of a node
+    private int height(Node node) {
+        if (node == null) return 0;
+        return 1 + Math.max(height(node.left), height(node.right));
+    }
+
+    // Balance factor
+    private int getBalance(Node node) {
+        if (node == null) return 0;
+        return height(node.left) - height(node.right);
+    }
+
+    // Right rotation (LL case)
+    private Node rotateRight(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+
+        // Perform rotation
+        x.right = y;
+        y.left = T2;
+
+        return x;
+    }
+
+    // Left rotation (RR case, not used for LL/LR but useful for completeness)
+    private Node rotateLeft(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        // Perform rotation
+        y.left = x;
+        x.right = T2;
+
+        return y;
+    }
+
+    // Rebalance node if needed (LL and LR cases)
+    private Node rebalance(Node node) {
+        int balance = getBalance(node);
+
+        // LL Case
+        if (balance > 1 && getBalance(node.left) >= 0) {
+            return rotateRight(node);
+        }
+
+        // LR Case
+        if (balance > 1 && getBalance(node.left) < 0) {
+            node.left = rotateLeft(node.left);
+            return rotateRight(node);
+        }
+
+        // RR and RL cases could be added similarly if needed
+
+        return node;
+    }
+
+    // Inorder traversal
+    public void inorder() {
+        inorderRec(root);
+    }
+
+    private void inorderRec(Node root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.print(root.key + " ");
+            inorderRec(root.right);
+        }
+    }
+
+    // PreOrder traversal
+    public void preOrder() {
+        preOrderRec(root);
+    }
+
+    private void preOrderRec(Node root) {
+        if (root != null) {
+            System.out.print(root.key + " ");
+            preOrderRec(root.left);
+            preOrderRec(root.right);
+        }
+    }
+
+    // PostOrder traversal
+    public void postOrder() {
+        postOrderRec(root);
+    }
+
+    private void postOrderRec(Node root) {
+        if (root != null) {
+            postOrderRec(root.left);
+            postOrderRec(root.right);
+            System.out.print(root.key + " ");
+        }
+    }
 }

@@ -5,7 +5,7 @@ import org.example.classes.ArvoreBinaria;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("https://code-with-me.global.jetbrains.com/zkBEEEGBEMxDmpOjGajy6g");
+        System.out.println("https://code-with-me.global.jetbrains.com/6q1G95x4qq5YfKfg5oGvCw");
 
         ArvoreBinaria arvore = new ArvoreBinaria();
         arvore.inserir(40);
