@@ -144,7 +144,7 @@ public class ArvoreBinaria {
 
     public int alturaIterativa() {
         if (nodo == null) {
-            return -1; // Altura de uma árvore vazia
+            return -1;
         }
 
         Queue<No> fila = new LinkedList<>();
