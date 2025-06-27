@@ -113,4 +113,21 @@ public class ArvoreBinaria {
             System.out.printf(nodo.valor + " ");
         }
     }
+
+    public int retornaMenorValor(){
+        No atual = this.nodo;
+        while(atual.esquerda != null){
+            atual = atual.esquerda;
+        }
+        return atual.valor;
+    }
+
+    public int retornaMaiorValor(){
+        No atual = this.nodo;
+        while(atual.direita != null){
+            atual = atual.direita;
+        }
+        return atual.valor;
+    }
+
 }

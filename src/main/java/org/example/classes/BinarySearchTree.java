@@ -146,4 +146,22 @@ public class BinarySearchTree {
             System.out.print(node.key + " ");
         }
     }
+
+    public int getMinValue() {
+        Node current = root;
+        if (current == null) return 0;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current.key;
+    }
+
+    public int getMaxValue() {
+        Node current = root;
+        if (current == null) return 0;
+        while (current.right != null) {
+            current = current.right;
+        }
+        return current.key;
+    }
 }
