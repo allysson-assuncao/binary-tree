@@ -5,14 +5,14 @@ import org.example.classes.ArvoreBinaria;
 public class Main {
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
-        arvore.inserir(33);
-        arvore.inserir(15);
-        arvore.inserir(41);
-        arvore.inserir(38);
-        arvore.inserir(34);
-        arvore.inserir(47);
-        arvore.inserir(43);
-        arvore.inserir(49);
+        arvore.inserir(7);
+        arvore.inserir(8);
+        arvore.inserir(4);
+        arvore.inserir(3);
+        arvore.inserir(2);
+        arvore.inserir(1);
+        arvore.inserir(6);
+        arvore.inserir(5);
 
         /*System.out.println(arvore.retornaMenorValor());
         System.out.println(arvore.retornaMaiorValor());*/
